@@ -18,3 +18,8 @@ def get_all_students():
 def get_percentage_students_by_gender(gender):
     student_service = StudentService()
     return str(student_service.get_percentage_students_by_gender(int(gender)))
+
+@app_student.route('/student/per_students_job_avgsalary/<gender>')
+def get_percentage_students_job_avg_salary(gender):
+    student_service = StudentService()
+    return jsonify(student_service.get_percentage_students_job_avg_salary(int(gender)))
