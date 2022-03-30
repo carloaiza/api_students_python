@@ -3,12 +3,14 @@ import json
 
 class StudentService:
     students = []
+    cities = ['Manizales','Pereira','Chinchiná','Armenia']
+
     def __init__(self):
         self.students =[]
-        self.students.append(Student("363763763", 1, 22020202,
-                                True, "Carlos Loaiza"))
-        self.students.append(Student("363766667", 2, 0, False, "Valentina Hurtado"))
-        self.students.append(Student("233t6363", 1, 10000000, True, "Kevin Sánchez"))
+        self.students.append(Student("363763763", 1, 5000000,
+                                True, "Carlos Loaiza",self.cities[2]))
+        self.students.append(Student("363766667", 2, 0, False, "Valentina Hurtado",self.cities[1]))
+        self.students.append(Student("233t6363", 1, 0, False, "Kevin Sánchez",self.cities[0]))
 
     def get_all_students(self):
         return self.students
@@ -34,6 +36,40 @@ class StudentService:
         else:
             return {"Error":"la consulta no generó resultados"}
 
+    def get_students_job_gt_salary(self):
+        may_salary_h = None
+        may_salary_m = None
+        for student in self.students:
+            if student.job == True:
+                if (student.gender == 1 and may_salary_h == None) or (student.gender == 1 and student.salary > may_salary_h.salary):
+                    may_salary_h = student
+
+                if (student.gender == 2 and may_salary_m == None) or (student.gender == 2 and student.salary > may_salary_m.salary):
+                    may_salary_m = student
+
+        list_estu=[]
+        if may_salary_h != None:
+            list_estu.append(may_salary_h)
+        if may_salary_m != None:
+            list_estu.append(may_salary_m)
+
+        return list_estu
+
+    def get_dict_cities(self):
+        dict_cities ={}
+        for city in self.cities:
+            dict_cities[city]=[0,0]
+        return dict_cities
+
+    def get_students_by_city(self):
+        dict_cities = self.get_dict_cities()
+        for student in self.students:
+            if student.job:
+                dict_cities[student.city][0]= dict_cities[student.city][0] +1
+            else:
+                dict_cities[student.city][1] = dict_cities[student.city][1] + 1
+
+        return dict_cities
 
 
 
