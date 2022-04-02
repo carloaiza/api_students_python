@@ -17,5 +17,6 @@ def get_all_students():
 def save_student():
     data = request.json
     list_se_service.add_student(data)
-    return "Como que tienen hambre los campeones"
+    return Response(status=200,response=json.dumps({"message":"Adicionado exitosamente"}),
+                    mimetype="application/json")
 
