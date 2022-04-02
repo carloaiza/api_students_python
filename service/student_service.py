@@ -7,10 +7,10 @@ class StudentService:
 
     def __init__(self):
         self.students =[]
-        self.students.append(Student("363763763", 1, 5000000,
-                                True, "Carlos Loaiza",self.cities[2]))
-        self.students.append(Student("363766667", 2, 0, False, "Valentina Hurtado",self.cities[1]))
-        self.students.append(Student("233t6363", 1, 0, False, "Kevin Sánchez",self.cities[0]))
+        carloaiza = Student({"idenfication":"75147236","name":"Carlos"})
+        self.students.append(carloaiza)
+        #self.students.append(Student("363766667", 2, 0, False, "Valentina Hurtado",self.cities[1]))
+        #self.students.append(Student("233t6363", 1, 0, False, "Kevin Sánchez",self.cities[0]))
 
     def get_all_students(self):
         return self.students
